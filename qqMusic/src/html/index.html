@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+<!--//总的父级-->
+<div class="wrapper">
+    <!--    //歌曲图片-->
+    <div class="song-img">
+        <!--        黑图片定义父级，产生胶带效果-->
+        <div class="img-box">
+            <img src="" alt="">
+        </div>
+    </div>
+    <!--    歌曲信息-->
+    <div class="song-info">
+        <!--        <div class="song-name">丑八怪</div>-->
+        <!--        <div class="singer-name">薛之谦</div>-->
+        <!--        <div class="album-name">意外</div>-->
+    </div>
+    <!--    进度条-->
+    <div class="pro">
+        <div class="curTime">00:00</div>
+        <div class="proBar">
+            <div class="total-progress"></div>
+            <i id="spot"></i>
+            <div class="cur-progress"></div>
+        </div>
+        <div class="endTime">04:13</div>
+
+    </div>
+    <!--    控制菜单-->
+    <div class="control">
+
+        <div class="btn like"><img src="" alt=""></div>
+        <div class="btn pre"><img src="" alt=""></div>
+        <div class="btn play"><img src="" alt=""></div>
+        <div class="btn next"><img src="" alt=""></div>
+        <div class="btn list"><img src="" alt=""></div>
+
+    </div>
+    <ul class="listWrapper">
+        <!--           歌曲列表-->
+    </ul>
+
+
+</div>
+<script src="../js/zepto.min.js"></script>
+<script src="../js/render.js"></script>
+<script src="../js/renderList.js"></script>
+<script src="../js/audioControl.js"></script>
+<script src="../js/Indexcontrol.js"></script>
+<script src="../js/rotateAlbum.js"></script>
+<script src="../js/proClass.js"></script>
+<script src="../js/index.js"></script>
+
+</body>
+</html>

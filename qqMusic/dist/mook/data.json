@@ -1,0 +1,29 @@
+[
+  {
+    "image": "/source/步步.jpg",
+    "audio": "/source/五月天 - 步步.flac",
+    "song": "步步",
+    "album": "步步",
+    "singer": "五月天",
+    "duration": 273,
+    "isLike": true
+  },
+  {
+    "image": "/source/派对动物.jpg",
+    "audio": "/source/五月天 - 派对动物.flac",
+    "song": "派对动物",
+    "album": "派对动物",
+    "singer": "五月天",
+    "duration": 250,
+    "isLike": false
+  },
+  {
+    "image": "/source/顽固.jpg",
+    "audio": "/source/五月天 - 顽固.flac",
+    "song": "顽固",
+    "album": "顽固",
+    "singer": "五月天",
+    "duration": 264,
+    "isLike": false
+  }
+]
