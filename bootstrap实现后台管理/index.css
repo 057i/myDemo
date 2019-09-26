@@ -1,0 +1,142 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+.wrapper{
+    width: 100%;
+    height: 100%;
+
+}
+.wrapper .leftContent{
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #4d5e70;
+    color: white;
+}
+.wrapper .leftContent .logoBox{
+    width: 100%;
+    height: 70px;
+    padding: 20px;;
+    background-color: #354457;
+}
+.wrapper .leftContent .logoBox img{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-size: 100% 100%;
+    background-image: url("./images/logo.png");
+}
+.wrapper .leftContent .info{
+    padding: 20px;
+    border-bottom: 1px solid #fff;
+}
+.wrapper .leftContent .info p{
+    color: #ccc;
+    font-size: 20px;
+}
+
+.wrapper .leftContent .list-group p{
+    margin-left: 8px;
+    margin-top: 8px;
+    font-weight: bold;
+    color: #ccc;
+}
+.wrapper .leftContent .list-group .list-group-item{
+    text-align: center;
+}
+.wrapper .leftContent .list-group .list-group-item:hover{
+    background: red;
+}
+.wrapper .leftContent .list-group .list-group-active{
+    background: red;
+    color: black;
+}
+
+
+.wrapper .leftContent .list-group-item{
+    background-color: #4d5e70;
+    border: none;
+}
+
+.wrapper .rightContent{
+    width: 100%;
+    height: 100%;
+    padding-left: 200px;
+    padding-top: 20px;
+    background-color: #eff3f6;
+}
+
+
+.rightContent .addSource{
+    width: 100%;
+    height: 70px;
+    background: white;
+}
+.rightContent .toggle-btn{
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: 18px;
+    float: left;/*因为修饰的是a标签，要想使margin生效必须要有display:inline-block*/
+    display: none;
+}
+
+@media screen and (max-width: 1123px){
+    .leftContent{
+        display: none;
+    }
+    .wrapper .rightContent{
+        padding-left: 0;
+    }
+    .rightContent .toggle-btn{
+        display: block;
+    }
+}
+
+.rightContent .thead{
+    height: 35px;
+    background-color: #e3e8ee;
+    line-height: 35px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.rightContent .tbody{
+    /*background: ;*/
+}
+.rightContent .tbody .row{
+    margin-left: 5px;
+    margin-top: 20px;
+    background: white;
+    height: 70px;
+    line-height: 70px;
+}
+.wrapper .rightContentShow{
+    padding-left: 200px;
+}
+
+
+
+
+.addSource button{
+    color: orange;
+    border: 1px solid orange;
+    background-color: #fff;
+    margin-top: 18px;
+    margin-left: 20px;
+}
+.modify{
+    text-align: center;
+}
+.modify btn{
+    display: inline-block;
+}
+
+
+
