@@ -1,0 +1,518 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+    text-decoration: none;
+    color: #999;
+}
+body,html{
+    width: 100%;
+    height:100%;
+    background: #f0f3ef;
+    font-size: 12px;
+}
+.head{
+    width: 100%;
+    height: 80px;
+    background-color:  #013c91;
+}
+.ad{
+    width: 1190px;
+    height: 100%;
+    margin: 0 auto;
+
+}
+.ad img{
+    background-image: url("./imgs/jd-ad.jpg");
+    display: inline-block;
+    width: 100%;
+    height:100%;
+}
+.head .nav{
+    width: 100%;
+    height:30px;
+    background: #e3e4e5;
+    line-height: 30px;
+}
+.head .w{
+    width: 1190px;
+    height:100%;
+    margin:0 auto;
+    position: relative;
+}
+.position{
+    display: inline-block;
+    width: 258px;
+    height: 100%;
+}
+.position span{
+    display: inline-block;
+    width:58px;
+    margin-left: 220px;
+    padding: 0 5px;
+}
+.w .navtitle{
+    float: right
+}
+.w .navtitle li,.w .navtitle span{
+    float: left;
+    padding-left: 7px;
+
+}
+.w .navtitle li a{
+    color: #999;
+}
+.navtitle li a:hover{
+    color:red;
+}
+.searchWrapper{
+    width: 100%;
+    height:140px;
+    float: left;
+
+}
+.searchBox{
+    width: 1190px;
+    margin: 0 auto;
+    position: relative;
+}
+.searchBox .logo{
+    background: url("./imgs/logo.png");
+    display: inline-block;
+    position: absolute;
+    width: 190px;
+    height: 170px;
+    top: -30px;
+    left: 0;
+    z-index: 100;
+    background-color: #fff;
+}
+.search{
+    position: relative;
+    left: 320px;
+    top:25px;
+    height: 70px;
+    width: 600px;
+}
+#searchBox{
+    display: inline-block;
+    width: 500px;
+    height: 35px;
+    position: absolute;
+    left:0;
+    border:  transparent;
+    outline: none;
+}
+#searchBtn{
+    color:#fff;
+    background: #f00;
+    display: inline-block;
+    width: 40px;
+    height: 35px;
+    border:  transparent;
+    position: absolute;
+    left: 500px;
+}
+.answer{
+    background-color: #fff;
+    position: absolute;
+    width: 500px;
+    top:35px;
+    z-index:999;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+
+}
+.answer li{
+    font-size: 16px;
+    color:#999;
+}
+.settleup{
+    position: absolute;
+    left:620px;
+    top: 2px;
+    width: 188px;
+    height: 33px;
+    background-color: #fff;
+    text-align: center;
+    line-height: 33px;
+}
+.settleup a{
+    color: #f00;
+}
+#hotwords{
+    position: absolute;
+    top:40px;
+}
+#hotwords a{
+    float: left;
+    padding-right: 5px;
+}
+#hotwords a:hover{
+    color:red;
+}
+.navitems{
+    overflow: hidden;
+    position: absolute;
+    left:240px;
+    width: 790px;
+    padding-top: 20px;
+}
+.navitems ul{
+    float: left;
+}
+.navitems ul li,.navitems span{
+    float: left;
+    margin-right: 25px;
+}
+.navitems ul li a,.navitems span{
+    height: 40px;
+    line-height: 40px;
+}
+.navitems ul li a{
+    font-size: 14px;
+}
+.content{
+    width:1190px;
+    margin: 0 auto;
+}
+.content .first{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+}
+.content .fs1{
+    width: 190px;
+    background-color: #fff;
+    margin-right: 10px;
+    position: relative;
+}
+.content .fs1 #menu-list{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    padding: 6px 0px;
+    color: #636363;
+}
+.content .fs1 #menu-list li {
+    height: 26px;
+    line-height: 26px;
+    text-align: left;
+    padding-left: 10px;
+}
+.content .fs1 #menu-list li:hover{
+    background: #999;
+}
+.content .fs1 #menu-list li a{
+    color: #636363;
+}   
+.fs1 #menu_content{
+    display: none;
+    background:#fff;
+    position: absolute;
+    width: 998px;
+    min-height: 478px;
+    top: 0;
+    left: 190px;
+    z-index: 100;
+    border: 1px solid #eee;
+    padding: 10px;
+}
+.fs1 #menu_content .tabs{
+    padding-left: 20px;
+    height: 24px;
+}
+.fs1 #menu_content .tabs li{
+    float: left;
+    margin-right: 10px;
+    padding: 2px 10px;
+    height: 24px;
+    background-color: #333;
+    line-height: 24px;
+    color: #fff;
+    font-size: 12px;
+}
+.fs1 #menu_content .list_items{
+    /* 因为上一个元素是浮动元素，产生了浮动流，所以这里要有bfc */
+    position: relative;
+    padding-left: 80px;
+    padding:24px 0 17px 66px;
+    width: 800px;
+}
+.fs1 #menu_content .list_items dt{
+    top: 6px;
+    width: 70px;
+    text-align: left;
+    font-weight: 700;
+    color: #1e1e1e
+}
+.fs1 #menu_content .list_items dd{
+    float: left;
+    margin: 3px 0;
+    padding: 0 10px;
+    height: 16px;
+    border-left: 1px solid #e0e0e0;
+    line-height: 16px;
+    white-space: nowrap;
+    float: left;
+}
+
+.content .fs2{
+    width: 590px;
+    margin-right: 10px;
+}
+.active{
+    background-color: grey;
+    border-radius:50%; 
+}
+.content .fs3{
+    width: 190px;
+}
+.fs3 .items{
+    float: left;
+    width: 190px;
+    height: 150px;
+    margin-top: 10px;
+}
+.fs3 #img1{
+    background: url("./imgs/2.png");
+}
+.fs3 #img2{
+    background: url("./imgs/3.png");
+}
+.fs3 #img3{
+    background: url("./imgs/4.png");
+}
+.fs3 #img1,.fs3 #img2,.fs3 #img3{
+    background-size: 100% 100%;
+}
+.content .fs4{
+    width: 190px;
+    /* background-color: pink; */
+    float: right;
+}
+.fs{
+    height: 500px;
+    float: left;
+    /* background-color: #fff; */
+}
+.fs4 #user{
+    height: 150px;
+    background: #fff;
+    margin-top: 10px;
+    text-align: center;
+}
+.fs4 #user .user_inner{
+    position: relative;
+    padding-top: 62px;
+    background-color: white;
+    height: 78px;
+}   
+.fs4 #user .user_inner .userLogo{
+    background: url('https://misc.360buyimg.com/mtd/pc/common/img/no_login.jpg');
+    display: block;
+    background-size: 100% 100%;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+    vertical-align: middle;
+    position: absolute;
+    left: 50%;
+    top: -10px;
+    margin-left: -34px;
+}
+.fs4 #user .user_inner .user_profit{
+    margin-top: 10px;
+    height: 25px;
+    font-size: 12px;
+}
+.user_profit .userBtn{
+    display: inline-block;
+    margin: 0 5px;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    text-align: center;
+    color: #e43f3b;
+    border-radius: 13px;
+    box-shadow: 6px 8px 20px rgba(45,45,45,.15);
+}
+.user_profit .right{
+    background: #363634;
+    color: #e5d790;
+}  
+.fs4 .news{
+    overflow: hidden;
+    height: 130px;
+    background-color: white;
+}
+.news2 .news_tit {
+    display: inline-block;
+    font-size: 13px;
+    margin-left: 15px;
+    color: #1e1e1e;
+}
+.news2 .news_hd{
+    position: relative;
+}
+.news2 .news_more {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    font-size: 12px;
+    color: #999;
+}
+.news2 .news_list{
+    padding-top: 8px;
+    margin: 0 15px;
+    height: 88px;
+}
+.news_tag{
+    display: inline-block;
+    position: relative;
+    font-size: 12px;
+    height: 16px;
+    width: 35px;
+    line-height: 16px;
+    text-align: center;
+    vertical-align: 0;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #e47f7f;
+    margin-right: 6px;
+}
+.news_item{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 21px;
+    max-width: 160px;
+    overflow: hidden;
+}
+.fs4 .services{
+    padding: 18px 8px 11px;
+    background-color: white;
+    border: 1px solid black;
+    overflow: hidden;
+    height: 160px;
+    position: relative;
+}
+.fs4 .services .service-entry{
+    padding: 1px 0px 22px;
+    background: #fff;
+    width: 180px;
+    display: inline-block;
+    
+}
+.fs4 .services .service-entry ul li{
+    position: relative;
+    float: left;
+    width: 42px;
+    /* height: 55px; */
+    background: #fff;
+    text-align: center;
+    font-size: 12px;
+
+}
+.item-frame .active{
+    margin-top: -52px;
+}
+.service-entry i {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 4px auto 0;
+    background-image: url(./imgs/services.jpg);
+    background-repeat: no-repeat;
+}
+.huafei {
+    background-position: -6px -5px ;
+}
+.jipiao {
+    background-position: -68px -5px;
+}
+.jiudian {
+    background-position: -131px -5px;
+}
+.youxi {
+    background-position: -195px -5px;
+}
+.qiyegou {
+    background-position: -6px -90px;
+}
+.jiayouka {
+    background-position: -67px -90px;
+}
+.dianyingpiao {
+    background-position: -132px -83px;
+}
+.huochepiao {
+    background-position: -196px -86px;
+}
+.zhongchou {
+    background-position:-6px -170px;
+}
+.licai {
+    background-position: -68px -170px;
+}
+.lipinka {
+    background-position: -132px -167px;
+}
+.baitiao {
+    background-position: -194px -170px;
+}
+.service-entryShow{
+    width: 100%;
+    position: relative;
+}
+
+.service-entryShow ul{
+    display: inline-block;
+
+}
+.service-entryShow ul li{
+    float: left;
+    margin-right: 15px;
+    color:red;
+}
+.service-item span:hover{
+    color:red;
+}
+.service-entryShow .close{
+    position: absolute;
+    right: 0;
+    cursor:pointer;
+    font-weight: 700;
+}
+.footer-wrap{
+    width: 100%;
+
+}
+.footer{
+    width: 810px;
+    margin:10px auto;
+    background-color: mediumpurple;
+    border:5px solid powderblue;
+
+}
+.footer ul{
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+}
+.footer ul li{
+    width: 25%;
+}
+.footer ul li:nth-of-type(1){
+    padding-top: 10px;
+    height: 100px;
+}
+.item{
+    /*width: 100%;*/
+}
+.item img{
+    width: 100%;
+}

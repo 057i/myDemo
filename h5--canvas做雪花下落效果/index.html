@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #myCanvas {
+            background-image: linear-gradient(to bottom, rgb(19, 70, 149), black);
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+
+<script type="text/javascript">
+    // 需求：生成100个雪花
+    // fill如果用fill用来填充的话填充的是一个闭合图形，不会填充
+
+    var can = document.getElementById('myCanvas');
+    can.width = window.innerWidth;
+    can.height = window.innerHeight;
+    var myCanvas = can.getContext('2d');
+    var snowArray=[];//用来存放雪花的数组
+    Snow.prototype.render = function () {
+        /*每次生成雪花之前保存开启新路径并且保存状态*/
+        myCanvas.beginPath();
+        myCanvas.save();
+
+        /*传入X值做水平方向平移,依照画布最大宽度为x的最大偏移值*/
+        myCanvas.translate(this.X, this.Y);
+        // console.log(this.X,this.Y)
+
+        /*雪花放大缩小*/
+        myCanvas.scale(this.scale, this.scale)
+
+        /*canvas中旋转平移可以不写单位*/
+        myCanvas.rotate(this.rotate);
+
+        // 第一条线
+        myCanvas.moveTo(-10, 0);
+        myCanvas.lineTo(10, 0);
+
+        //三角函数计算每一个对应的顶点值以及坐标轴
+        var disY = Math.sin(60 * Math.PI / 180) * 10;
+        var disX = Math.sin(30 * Math.PI / 180) * 10;
+
+        //算出来的X点Y点做第二条线，第三条线的起始点和结束点
+        // 第二条线
+        myCanvas.moveTo(-disX, -disY);
+        myCanvas.lineTo(disX, disY);
+
+        //第三条线
+        myCanvas.moveTo(+disX, -disY);
+        myCanvas.lineTo(-disX, +disY);
+        myCanvas.lineCap = "round";//线段两端样式
+        myCanvas.lineWidth = this.lineWidth * 5;
+        myCanvas.strokeStyle = '#fff';
+        myCanvas.stroke();//绘制
+        myCanvas.restore()
+    }
+
+    /*雪花生成函数，需要传雪花出现的随机X值，雪花旋转角度，雪花缩放比值，雪花宽度*/
+    function Snow(X, rotate, scale, lineWidth,speedX,speedY) {
+        this.X = X;
+        this.Y=0;
+        this.rotate =rotate*Math.PI/180;
+        this.scale = scale;
+        this.lineWidth = lineWidth;
+        this.speedX=speedX;
+        this.speedY=speedY;
+        this.render();
+    }
+
+
+    /*雪花生成函数，需要定义雪花出现的随机X值，雪花旋转角度，雪花缩放比值，雪花宽度*/
+    function init() {
+        /*生成50朵雪花*/
+        for (var i = 0; i < 100; i++) {
+            var X = Math.random()*can.width;
+            var rotate = Math.random();
+            var scale = Math.random()+0.5;
+            var lineWidth = Math.random();
+            var speedX=Math.random()*0.1;
+            var speedY=Math.random()*2;
+
+
+
+            //循环中放延时器和定时器还有放函数都会导致闭包，解决办法是立即执行函数
+            (function (X,rotate, scale, lineWidth,speedX,speedY) {
+                setTimeout(function () {
+                    var snow = new Snow(X,rotate, scale, lineWidth,speedX,speedY);
+                    snow.render();
+                    snowArray.push(snow)
+                }, Math.random()*4000)
+            })(X, rotate, scale, lineWidth,speedX,speedY);
+            fall()
+        }
+    }
+        function fall() {
+            setInterval(function () {
+                myCanvas.clearRect(0,0,can.width,can.height);
+                for(var i in snowArray){
+                    snowArray[i].X=(snowArray[i].X+snowArray[i].speedX)%can.width;
+                    snowArray[i].Y=(snowArray[i].Y+snowArray[i].speedY)%can.height;
+                    //这里除以60是因为旋转60度和旋转120度相同
+                    snowArray[i].rotate=(snowArray[i].rotate+snowArray[i].rotate)%60;
+                    // 每一次计算完xy和旋转角度都重绘一次
+                    snowArray[i].render()
+
+                }
+
+            },80)
+        }
+        window.onresize=function(){
+            can.width=window.innerWidth;
+            can.height=window.innerHeight;
+            for(var i in snowArray){
+                snowArray[i].X=(snowArray[i].X+snowArray[i].speedX)%can.width;
+                snowArray[i].Y=(snowArray[i].Y+snowArray[i].speedY)%can.height;
+                //这里除以60是因为旋转60度和旋转120度相同
+                snowArray[i].rotate=(snowArray[i].rotate+snowArray[i].rotate)%60;
+                // 每一次计算完xy和旋转角度都重绘一次
+                snowArray[i].render()
+
+            }
+        }
+
+
+
+
+    init()
+
+
+
+</script>
+
+</body>
+</html>

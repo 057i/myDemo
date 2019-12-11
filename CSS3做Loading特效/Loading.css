@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    background-color: #e55A54;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text h3{
+    color: #ffffff;
+    font-size: 12px;
+}
+.text h2{
+    color: #ffffff;
+}
+.monster1,.monster2,.monster3{
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    margin: 10px;
+    box-shadow: 0 20px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation:monstermove infinite  4s alternate ;
+}
+.monster1{
+    background-color: #Db4D6D;
+    position: relative;
+}
+.monster2{
+    background-color: #0c4475;
+    position: relative;
+    animation-delay: 1s;
+}
+.monster3{
+    background-color: #e55A54;
+}
+.eye{
+    width: 40%;
+    height: 40%;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.eyesball{
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    animation:eyesballmove infinite alternate 2s;
+}
+.monster2 .eyesball,.monster2 .mouth{
+    background-color: #e55A54;
+}
+.monster1 .eyesball,.monster3 .eyesball{
+    background-color: #0c4475;
+}
+.mouth{
+    width: 25%;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+.monster1::before,
+.monster1::after,
+.monster2::before,
+.monster2:after,
+.monster3::before,
+.monster3::after{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 20px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: white;
+    top: -15px;
+}
+.monster1::before,.monster2::before,.monster3::before{
+    transform: translatex(-50%) rotate(45deg);
+}
+.monster1:after,.monster2::after,.monster3::after{
+    transform: translatex(50%) rotate(-45deg);
+}
+@keyframes eyesballmove {
+    0%{
+        transform: translateX(-50%);
+}
+    50%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(50%);
+    }
+}
+@keyframes monstermove {
+    0%{
+        transform: translateY(-0%);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+    50%{
+        transform: translateY(-30%);
+        box-shadow: 0 60px 20px  rgba(0, 0, 0, 0.1);
+    }
+}
+@keyframes shadows {
+    0%{
+    }
+    100%{
+        box-shadow: 0 120px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+.start{
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: #0c4475;
+    position:fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.start .loading{
+    background-color: white;
+    width: 200px;
+    height: 8px;
+    margin-top: 90px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.start .bar{
+    background-color: #e55A54;
+    height: 100%;
+    width: 0;
+}
+

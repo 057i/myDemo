@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+    .demo{
+        width: 500px;
+        height:300px;
+        border: 2px solid pink;
+        margin: 50px auto;
+    }
+    .wrapper{
+        width:500px;
+        height:300px;
+        border:1px solid pink;
+        margin: 20px auto;
+    }
+    .active{
+        background: greenyellow;
+    }
+    </style>
+</head>
+<body>
+    <!-- div>ul>li>img -->
+    <div class="wrapper"></div>
+    <div class="demo"></div>
+    <script src="./jquery.js"></script>
+    <script src="./index.js"></script>
+    <script type="text/javascript">
+        //无缝轮播
+        $('.wrapper').slider({
+            imgList:["./imgs/pic1.jpg", "./imgs/pic2.jpg", "./imgs/pic3.jpg"],
+            width:500,
+            height:300,
+            animateType:'animate',
+            isAuto:true,
+            direction:'right'
+        })
+        //幻灯片轮播
+        $('.demo').slider({
+            imgList:["./imgs/pic1.jpg", "./imgs/pic2.jpg", "./imgs/pic3.jpg","./imgs/pic1.jpg"],
+            width: 500,
+            height: 300,
+            animateType: 'fade',
+            isAuto: true,
+            direction: 'right'
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .content{
+        width: 1050px;
+        margin: 100px auto;
+    }
+    .content ul li{
+       width: 200px;
+       height:284px;
+       overflow: hidden;
+       float: left;
+       border:2px solid rgba(255,255,255);
+       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+       transition:all 2s;
+       position: relative;
+  }
+  .content ul:hover li{
+        width: 80px;
+  }
+  .content ul li:hover{
+      width:500px;
+      height: 284px;
+  }
+  .content ul li img{
+      width: 100%;
+      height: 100%;
+  }  
+  .content ul li p{
+      width: 100%;
+      position: absolute;
+      height:50px;
+      background: rgba(0, 0, 0, 0.8);
+      left: 0;
+      bottom: 20px;
+      line-height: 50px;
+      /*//首行缩进2字符*/
+      text-indent: 2em;   
+  }
+  a{
+      color: white;   
+      text-decoration: none;
+  }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <ul>
+            <li>
+                <a href="#">
+                    <img src="./img1/1.jpg" alt="">
+                </a>
+                <p class="title">
+                    <a href="">云南·大理</a>
+                </p>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./img1/2.jpg" alt="">
+                </a>
+                <p class="title">
+                    <a href="">广西·桂林</a>
+                </p>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./img1/3.jpg" alt="">
+                </a>
+                <p class="title">
+                    <a href="">福建·厦门</a>
+                </p>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./img1/4.jpg" alt="">
+                </a>
+                <p class="title">
+                    <a href="">浙江·千岛湖</a>
+                </p>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="./img1/5.jpg" alt="">
+                </a>
+                <p class="title">
+                    <a href="">长江·三峡</a>
+                </p>
+            </li>
+                
+        </ul>
+    </div>
+    
+</body>
+</html>

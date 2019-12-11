@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        padding:0;
+        margin:0;
+    }
+    body{
+        background-color:#000;
+    }
+    @keyframes space-change{
+        /*模糊值对应透明度，表示一天之内太阳的升起落下*/
+        from{
+            opacity: .3;
+        }
+        25%{
+            opacity:1;
+        }
+        50%{
+            opacity: .3;
+        }
+        75%{
+            opacity:.1;
+        }
+        to{
+            opacity:.3;
+    }
+}
+    @keyframes sunrise{
+        0%{
+            opacity:0;
+        }
+        10%{
+           opacity: 1;
+           transform:scale(.5,.5); 
+        }
+        30%{
+           opacity: 1;
+           transform:scale(.7,.7) translateY(-300px); 
+        }
+        50%{
+           opacity: 0;
+           transform:scale(.5,.5) translateX(350px) translateY(-250px); 
+        }
+        100%{
+           opacity: 0;
+           transform:scale(.7,.7) translateY(0); 
+        }
+
+    }
+    @keyframes moon-rise{
+        50%{
+            opacity:0;
+           transform: translateY(-150px);             
+
+        }
+        70%{
+            opacity: 1;
+           transform: translateY(-300px);             
+        }
+        85%{
+            opacity: .5;            
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+    .space{
+        height: 500px;
+        background-image:linear-gradient( to bottom , rgba(0, 130, 255, 1) ,  rgba(255, 255, 255, 1) );
+        animation:space-change 20s cubic-bezier(.5,0,.5,1) infinite;/*三次西贝尔函数实现由快到慢*/
+    }
+    .sun{
+        width: 50px;
+        height:50px;
+        position:absolute;
+        left:calc(50% - 25px);
+        top:calc(50% - 25px);
+        transform:scale(.5,.5);
+        border-radius:50%;
+        background-color: #fff;
+        box-shadow:0px 0px 100px 50px #fff,
+                0px 0px 250px 125px #ff0;
+        animation:sunrise 20s cubic-bezier(.5,0,.5,1) infinite;
+    }
+    .moon{
+        width: 80px;
+        height:80px;
+        position: absolute;
+        top:calc(50% - 40px);
+        right:150px;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: moon-rise 20s infinite;
+        opacity: 0;
+
+    }
+    .moon::after{
+        content:"";
+        width: 80px;
+        height:80px;
+        position: absolute;
+        background-color: black;
+        right:10px;
+        bottom:10px;
+        border-radius: 50%;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="space"></div>
+    <div class="sun"></div>
+    <div class="moon"></div>
+</body>
+</html>

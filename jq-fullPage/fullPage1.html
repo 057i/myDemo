@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <style>
+        *{
+            margin:0px;            
+        }
+        html,body{
+            width:100%;
+            height:100%;
+            overflow: hidden;
+        }
+        .wrapper{
+            width: 100%;
+            height:100%;
+            top:0;
+            left:0;
+            position: absolute;
+        }
+        .wrapper .section{
+            background: yellow;
+            width:100%;
+            height: 100%;
+            border-bottom: 1px solid grey;
+                                     /* 这里高度设置成wrapper的高度乘以竖排的个数  */
+             position: relative;
+        }
+        h3{
+            text-align: center;
+        }
+        .section .slideWrapper{
+            position: absolute;
+            height: 100%;
+            width: 3920px;
+        }
+        .slideWrapper .slide{
+            height: 100%;
+            width: 980px;
+            float: left;
+        }
+    </style> -->
+</head>
+<body>
+    <div class="wrapper">
+        <div class="section">
+            <h3>第一屏</h3>
+        </div>
+        <div class="section">
+            <div class="slideWrapper">
+                <div class="slide"><h3>第二屏的第一屏</h3></div>
+                <div class="slide"><h3>第二屏的第二屏</h3></div>
+                <div class="slide"><h3>第二屏的第三屏</h3></div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="slideWrapper">
+                <div class="slide"><h3>第三屏的第一屏</h3></div>
+                <div class="slide"><h3>第三屏的第二屏</h3></div>
+                <div class="slide"><h3>第三屏的第三屏</h3></div>
+                <div class="slide"><h3>第三屏的第四屏</h3></div>
+            </div>
+        </div>
+        <div class="section">
+            <h3>第四屏</h3>
+        </div>
+    </div>
+    <script src="../jquery.js"></script>
+    <script src="./js/commentFactory.js"></script>
+    <script type="text/javascript">
+        
+            $.fn.extend({
+                myFullPage:function(config){
+                    var colorArr=config.colorArr;
+                var commentStyle={
+                    width:'100%',
+                    height:'100%'
+                }
+                var clientWidth=$(document).outerWidth(),
+                    clientHeight=$(document).outerHeight();
+                var $w=$('.wrapper');
+                var verIndex=0,levelIndex=0;//垂直滚动的索引，水平滚动的索引
+                var verlock=true,levellock=true;//加锁保证垂直滚动的同时不可以左右滚动 
+                //初始化以及赋予共同样式
+                $('*').css({margin:0});
+                $('html')
+                    .add('body')
+                        .css({overflow:'hidden',position:'relative'})
+                            .add($w)
+                                .add('section')
+                                    .css(commentStyle);
+                //赋予他们特有的样式
+                $w.css({position:'absolute',top:0,left:0})
+                    .find('.section')
+                        .each(function(index,ele){
+                            $(ele).css({
+                                width:clientWidth,
+                                height:clientHeight,
+                                backgroundColor:colorArr[index],
+                                position:'relative'
+                            })})
+                            .find('h3')
+                                .css({textAlign:'center'})
+                                    .end()
+                                        .find('.slideWrapper')
+                                            .each(function(index,ele){
+                                                $(ele).css({width:$(ele).children().size()*clientWidth,
+                                                        height:clientHeight,
+                                                        position:'absolute'})})
+                                                        .find('.slide')
+                                                            .css({
+                                                                float:'left',
+                                                                width:clientWidth,
+                                                                height:clientHeight
+                                                            })
+                //keydown的事件源的e.which  37左 38上 39右 40下                                            
+                $(document).on('keydown',function(e){
+                    //上下滚动的条件
+                    var direction=null
+                    if(e.which == 38 || e.which ==40 ){
+                        if(verlock){
+                            verlock=false;
+                            var newTop=$('.wrapper').offset().top;
+                        if(e.which==38 && verIndex!=0){
+                            direction='top';                            
+                            config.onLeave(verIndex,direction)        
+                            verIndex-=1;
+                            newTop+=clientHeight;
+                        }else if(e.which==40 && verIndex != $w.children().size()-1){
+                            direction='buttom';    
+                            config.onLeave(verIndex,direction);                                    
+                            verIndex+=1;
+                            newTop-=clientHeight;
+                        }
+                        $w.animate({top:newTop},function(){verlock=true,config.afterLoad(verIndex,'load')})
+                    }
+
+                    }
+                    // else if(e.which ==37 || e.which == 39){
+                    //       //左右滚动,levelIndex左为正，右为负,
+                    //     var $sw=$('.section').eq(verIndex).find('.slideWrapper');
+                    //     var newLeft=$sw.offset().left;
+                    //     if(levellock){
+                    //         levellock=false;
+                    //         if(e.which==37 && levelIndex>0){//左滚动          
+                    //         levelIndex-=1;
+                    //         direction='left';
+                    //         newLeft+=clientWidth;
+                    //         config.onLeave(levelIndex,direction)                                         
+                    //     }else if(e.which==39 && levelIndex <  $sw.find('.slide').size()-1){//右滚动
+                    //         levelIndex+=1;
+                    //         direction='right';
+                    //         newLeft-=clientWidth;
+                    //         config.onLeave(levelIndex,direction)        
+                    //     }
+                    //     $sw
+                    //         .animate({ left: newLeft }, function () {
+                    //             levellock = true;
+                    //             })
+                    //     }       
+                    // }
+                
+                })   
+            }})                                   
+            //文档创建工厂生成dom,设置成jq的dom对象就可以在出生时候绑定事件
+
+            
+            $('.section').each(function(index,ele){
+                $(ele).html(commentFactory())
+            })
+
+            $('.wrapper').myFullPage({
+                colorArr:['orange','yellow','deeppink','pink'],
+                    //离开当前页的函数
+                    onLeave:function(index,direction){
+                        $('.wrapper').find('.section').eq(index).find('.comment').trigger('_commLeave');
+                },
+                //移动到当前页的函数
+                afterLoad:function(index,direction){
+                    $('.wrapper').find('.section').eq(index).find('.comment').trigger('_commLoad');
+
+                    // console.log(index,direction);
+                }
+                });
+                
+    </script>
+</body>
+</html>

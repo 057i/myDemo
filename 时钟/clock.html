@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .wrapper{
+            margin:50px auto;
+            width: 512px;
+            height:512px;
+            background-image:url("./image/clock.png");
+            background-size: cover;
+            position:relative;
+        }
+        .hour{
+            position: absolute;
+            width:32px;
+            height:148px;
+            background-size:100% 100%;
+            background-image:url("./image/hour.png");
+            top:240px;
+            left:240px;
+            z-index: 1;
+            transform-origin:center 16px;
+            transform:rotate(180deg);
+            animation:move 259200s steps(60,end)  infinite;
+
+        }
+        .second{
+            width:16px;
+            height:278px;
+            top:180px;
+            left:248px;
+            position: absolute;
+            background-image:url("./image/second.png");
+            z-index:3;
+            transform-origin:center 76px;
+            transform:rotate(180deg);
+            animation: move 60s steps(60,end)  infinite;
+        }
+        .minutes{
+            width:32px;
+            height:218px;
+            top:240px;
+            left:240px;
+            position: absolute;
+            background-image:url("./image/minute.png");
+            z-index:2;
+            transform-origin:center 16px;
+            transform:rotate(180deg);
+            animation:move 3600s steps(60,end)  infinite;
+        }
+        @keyframes move{
+            0%{
+                transform: rotate(180deg);
+            }
+            100%{
+                transform: rotate(540deg);
+            }
+        }
+        /*@keyframes minutesmove{*/
+        /*    0%{*/
+        /*        transform: rotate(180deg);*/
+        /*    }*/
+        /*    100%{*/
+        /*        transform: rotate(540deg);*/
+        /*    }*/
+        /*}*/
+        /*@keyframes hoursmove{*/
+        /*    0%{*/
+        /*        transform: rotate(180deg);*/
+        /*    }*/
+        /*    100%{*/
+        /*        transform: rotate(540deg);*/
+        /*    }*/
+        /*}*/
+
+
+
+    </style>
+</head>
+<div class="wrapper">
+    <div class="hour"></div>
+    <div class="second"></div>
+    <div class="minutes"></div>
+</div>
+<body>
+    
+
+</body>
+</html>

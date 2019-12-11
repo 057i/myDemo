@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #can {
+            border: 1px solid red;
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas id='can' width='500' height='500'></canvas>
+<script type="text/javascript">
+    /*刮刮乐一张图放在canvas的背景图上面，刮的区域放在2d区域*/
+
+    // ctx.globalCompositeOperation = "destination-out";
+    var can = document.getElementById('can');
+    var myCanvas = can.getContext("2d");
+    var oldX, oldY, newX, newY;
+
+    function init() {
+
+        myCanvas.fillStyle = "#ccc";
+        myCanvas.fillRect(0, 0, 500, 500);
+        myCanvas.fill();
+        var random = Math.random();
+        var oImg = new Image();
+        oImg.src = random <= 0.5 ? './1.png' : './2.jpg';
+        oImg.onload = function () {
+            can.style.backgroundImage = 'url(' + oImg.src + ')';
+            myCanvas.globalCompositeOperation = "destination-out";/*这个属性必须知道，旧像素覆盖新像素*/
+            can.addEventListener('mousedown', Down, false)
+        }
+    }
+
+    init();
+
+    /*原理是鼠标落下触发移动事件，在移动事件里创建笔画开辟新路径，然后再配合旧像素覆盖新像素的属性，就可以画出刮刮乐*/
+    function Down(e) {
+        console.log(e.clientX, e.clientY);
+        oldX = e.clientX;
+        oldY = e.clientY;
+        can.addEventListener('mousemove', Move, false);
+        can.addEventListener('mouseup', Up, false);
+    }
+
+    function Move(e) {
+
+        newX = e.clientX;
+        newY = e.clientY;
+        myCanvas.beginPath();
+        myCanvas.moveTo(oldX, oldY);
+        myCanvas.lineTo(newX, newY);
+        myCanvas.lineWidth = 20;
+        myCanvas.lineCap = 'round';
+        myCanvas.strokeStyle = 'red';
+        myCanvas.stroke();
+
+        //将新的XY赋值给旧的xy，预防鼠标点击不松手一直滑动的情况
+        oldX = newX;
+        oldY = newY;
+
+
+        // 画圆的方式刮开，效果不理想，会产生闭合图形
+        // myCanvas.arc(newX,newY,10,0,Math.PI*2,1);
+        // myCanvas.fillStyle='red';
+        // myCanvas.fill();
+
+    }
+
+    function Up(e) {
+        can.removeEventListener('mousemove', Move, false);
+    }
+
+    //预防鼠标点击后出了刮开区域回来还会继续处于按下状态
+    can.addEventListener('mouseleave', function () {
+        can.removeEventListener('mousemove', Move, false);
+    }, false);
+
+
+</script>
+
+
+</body>
+</html>

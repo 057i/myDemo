@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3做Loading动画效果</title>
+    <link rel="stylesheet" href="Loading.css">
+</head>
+
+<body>
+    <div class="text">
+        <h2>We are
+            <br>SQUARE
+            <br>MONSTER!
+            <br>
+            <h3>Ahhhh We will eat you</h3>
+        </h2>
+    </div>
+    <div class="monster1">
+        <div class="eye">
+            <div class="eyesball"></div>
+        </div>
+        <div class="mouth"></div>
+    </div>
+    <div class="monster2">
+        <div class="eye">
+            <div class="eyesball"></div>
+        </div>
+        <div class="mouth"></div>
+    </div>
+    <div class="start">
+        <div class="monster3">
+            <div class="eye">
+                <div class="eyesball"></div>
+            </div>
+            <div class="mouth"></div>
+        </div>
+        <div class="loading">
+            <div class="bar"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var loading = document.getElementsByClassName("loading")[0];
+        var bar = document.getElementsByClassName("bar")[0];
+        var start = document.getElementsByClassName("start")[0];
+        var monster3 = document.getElementsByClassName("monster3")[0];
+        var width1 = bar.offsetWidth;
+        var num = 0;
+        var timer = setInterval(function () {
+            width1++;
+            num = bar.offsetWidth * 1.0 / loading.offsetWidth;
+            bar.style.width = width1 + "px";
+            switch (num * 10) {
+                case 1:
+                    monster3.style.opacity = 0.95;
+                    break;
+                case 2:
+                    monster3.style.opacity = 0.85;
+                    break;
+                case 3:
+                    monster3.style.opacity = 0.8;
+                    break;
+                case 4:
+                    monster3.style.opacity = 0.75;
+                    break;
+            }
+            if (loading.offsetWidth < bar.offsetWidth) {
+                clearInterval(timer);
+                start.style.display = "none";
+            }
+        }, 50)
+    </script>
+</body>
+
+</html>

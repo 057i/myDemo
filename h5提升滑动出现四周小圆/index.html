@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #can {
+        background-color: black;
+    }
+
+</style>
+<body>
+<canvas id="can"></canvas>
+
+<script type="text/javascript">
+    var can = document.getElementById('can');
+    var myCanvas = can.getContext('2d');
+    var circleList = [];//小球数组
+
+
+    init();
+
+    /*让画布大小等于整屏*/
+    function init() {
+        can.width = window.innerWidth;
+        can.height = window.innerHeight;
+    }
+
+    /*当屏幕大小被改变时候触发函数*/
+    window.onresize = init;
+
+
+    function circle(x, y) {
+        this.x = x;
+        this.y = y;
+        /*小圆点自由变化的x y变量*/
+        this.vx = (Math.random() - 0.5) * 3;
+        this.vy =(Math.random() - 0.5) * 3;
+        /*rbg自动生成 */
+        this.r = random(0, 255);
+        this.g = random(0, 255);
+        this.b = random(0, 255);
+        // 利用构造函数原型生成
+        this.draw();
+    }
+
+    circle.prototype = {
+        draw: function () {
+            myCanvas.beginPath();
+            /*整个demo的核心*/
+            /*颜色穿透属性*/
+            myCanvas.globalCompositeOperation = 'lighter';
+            // 全局透明度
+            myCanvas.globalAlpha = this.a;
+            myCanvas.fillStyle = 'rgb(' + this.r + ',' + this.g + ',' + this.b + ')';
+            myCanvas.arc(this.x, this.y, 30, 0, Math.PI * 2, 0);
+            myCanvas.fill();
+            // 渲染成功，开启运动
+            this.move()
+
+
+        },
+        move: function () {
+            myCanvas.clearRect(0, 0, myCanvas.width, myCanvas.height);
+            this.x += this.vx;
+            this.y += this.vy;
+            this.a *= 0.95;
+        }
+
+
+    }
+
+
+    function random(start, end) {
+
+        return start + (end - start) * Math.random()
+
+    }
+
+
+    function render() {
+        myCanvas.clearRect(0,0,can.width,can.height)
+        circleList.forEach(function (ele, index, self) {
+            ele.draw();
+            if (ele.a <= 0.05) {
+                circleList.splice(index, 1)
+            }
+        })
+        setTimeout(function () {
+            render()
+        },16.7)//这里的16.7毫秒刷新一次的原因是因为页面每16.7秒刷新一帧
+    }
+    render()
+
+/*绑定全局鼠标移动函数*/
+    window.addEventListener('mousemove', function (e) {
+        var newCircle = new circle(e.clientX, e.clientY);
+        circleList.push(newCircle);
+
+    }, false)
+
+</script>
+</body>
+</html>
